@@ -10,6 +10,7 @@
                 <label class="col-sm-6 control-label" for="fullName">Full Name</label>
                 <div class="col-sm-6">
                     <input id="fullName" formControlName="fullName" type="text" class="form-control">
+                    <!-- <label>{{fullNameLength}}</label> -->
                     <span class="help-block" *ngIf="employeeForm.get('fullName').errors && (employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty)">
                         <!-- error.required means when validation fails the kind of error is added to property set of 'errors' so that we can know which kind of error is thrown -->
                         <span *ngIf="employeeForm.get('fullName').errors.required">
