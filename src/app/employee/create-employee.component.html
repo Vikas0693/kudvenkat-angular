@@ -23,7 +23,7 @@
                 </div>
             </div>
             <br>
-            <div class="form-group" [ngClass]="{'has-error': employeeForm.get('required').errors}">
+            <div class="form-group" [ngClass]="{'has-error': employeeForm.get('email').errors && (employeeForm.get('email').touched || employeeForm.get('email').dirty)}">
                 <label class="col-sm-6 control-label" for="email">Email</label>
                 <div class="col-sm-6">
                     <input id="email" type="text" formControlName="email" class="form-control">

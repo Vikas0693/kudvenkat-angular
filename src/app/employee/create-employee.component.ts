@@ -16,7 +16,7 @@ export class CreateEmployeeComponent implements OnInit {
       'maxLength': 'Full Name must be less than 2 characters.'
     },
     'email': {
-      'required': 'Full Name is required.'
+      'required': 'Email is required.'
     },
     'skillName': {
       'required': 'Skill name is required.'
@@ -53,7 +53,7 @@ export class CreateEmployeeComponent implements OnInit {
       email: ['',Validators.required],
       skills: this.fb.group({
         skillName: ['',Validators.required],
-        experienceInYears: [2,Validators.required],
+        experienceInYears: ['',Validators.required],
         proficiency: ['',Validators.required]
       })
     });
@@ -68,16 +68,23 @@ export class CreateEmployeeComponent implements OnInit {
     // });
   }
 
-  logKeyValuePairs(group :FormGroup): void{
+  logValidationErrors(group :FormGroup): void{
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if(abstractControl instanceof FormGroup){
-        this.logKeyValuePairs(abstractControl);
+        this.logValidationErrors(abstractControl);
       }
       else{
-        console.log('Key = '+ key + ' Value = '+ abstractControl.value);
-        //to disbale controls on sabmit
-        //abstractControl.disable();
+        this.formErrors[key] = '';
+        if(abstractControl && abstractControl.invalid){
+          const messages = this.validationMessages[key];
+          //in below errorKey is kind of error like 'required','minLength','maxLength' etc..
+          for(const errorKey in abstractControl.errors){
+            if(errorKey){
+              this.formErrors[key] += messages[errorKey] + ' ';
+            }
+          }
+        }
       }
     });
 
@@ -101,6 +108,8 @@ export class CreateEmployeeComponent implements OnInit {
     //});
     //to log key value pairs of formGroup
     //this.logKeyValuePairs(this.employeeForm);
+    this.logValidationErrors(this.employeeForm);
+    console.log('formErrors = ',this.formErrors);
   }
 
 }
