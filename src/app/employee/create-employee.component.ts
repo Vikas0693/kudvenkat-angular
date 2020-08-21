@@ -9,7 +9,33 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CreateEmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
-  fullNameLength =0;
+  validationMessages = {
+    'fullName': {
+      'required': 'Full Name is required.',
+      'minLength': 'Full Name must be greater than 2 characters.',
+      'maxLength': 'Full Name must be less than 2 characters.'
+    },
+    'email': {
+      'required': 'Full Name is required.'
+    },
+    'skillName': {
+      'required': 'Skill name is required.'
+    },
+    'experienceInYears': {
+      'required': 'Experience is required.'
+    },
+    'proficiency': {
+      'required': 'Proficiency is required.'
+    }
+  };
+  formErrors = {
+    'fullName': '',
+    'email': '',
+    'skillName': '',
+    'experienceInYears': '',
+    'proficiency': ''
+  };
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -24,11 +50,11 @@ export class CreateEmployeeComponent implements OnInit {
     }); */
     this.employeeForm = this.fb.group({
       fullName: ['',[Validators.required,Validators.minLength(2), Validators.maxLength(10)]],
-      email: ['',Validators.email],
+      email: ['',Validators.required],
       skills: this.fb.group({
-        skillName: [''],
-        experienceInYears: [2],
-        proficiency: ['beginner']
+        skillName: ['',Validators.required],
+        experienceInYears: [2,Validators.required],
+        proficiency: ['',Validators.required]
       })
     });
     //console.log('Employee Form full name error :',this.employeeForm.get('fullName').errors);
@@ -41,6 +67,22 @@ export class CreateEmployeeComponent implements OnInit {
     //   console.log(JSON.stringify(value));
     // });
   }
+
+  logKeyValuePairs(group :FormGroup): void{
+    Object.keys(group.controls).forEach((key: string) => {
+      const abstractControl = group.get(key);
+      if(abstractControl instanceof FormGroup){
+        this.logKeyValuePairs(abstractControl);
+      }
+      else{
+        console.log('Key = '+ key + ' Value = '+ abstractControl.value);
+        //to disbale controls on sabmit
+        //abstractControl.disable();
+      }
+    });
+
+  }
+
   onSubmit(): void{
     console.log(this.employeeForm.value);
   }
@@ -48,15 +90,17 @@ export class CreateEmployeeComponent implements OnInit {
   onLoadDataClick(): void{
     //in setValue method it is mandatory to set all fields but in patchValue we set subset fields
     //this.employeeForm.setValue({
-      this.employeeForm.patchValue({
-      fullName: 'Vikas Sharma',
-      email: null,
+      //this.employeeForm.patchValue({
+      //fullName: 'Vikas Sharma',
+      //email: null,
       /* skills: {
         skillName: 'Python',
         experienceInYears: 2,
         proficiency: 'beginner'
       } */
-    });
+    //});
+    //to log key value pairs of formGroup
+    //this.logKeyValuePairs(this.employeeForm);
   }
 
 }
