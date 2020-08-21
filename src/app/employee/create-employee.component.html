@@ -5,17 +5,30 @@
         </div>
         <div class="panel-body">
 
-            <div class="form-group">
+            <!-- <div class="form-group" [ngClass]="{'has-error': employeeForm.get('fullName').errors}"> -->
+                <div class="form-group" [ngClass]="{'has-error': employeeForm.get('fullName').errors && (employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty)}">
                 <label class="col-sm-6 control-label" for="fullName">Full Name</label>
                 <div class="col-sm-6">
                     <input id="fullName" formControlName="fullName" type="text" class="form-control">
+                    <span class="help-block" *ngIf="employeeForm.get('fullName').errors && (employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty)">
+                        <!-- error.required means when validation fails the kind of error is added to property set of 'errors' so that we can know which kind of error is thrown -->
+                        <span *ngIf="employeeForm.get('fullName').errors.required">
+                        Full Name is mandatory
+                        </span>
+                        <span *ngIf="employeeForm.get('fullName').errors.minlength || employeeForm.get('fullName').errors.maxlength">
+                            Full Name must be greater than 2 characters and less than 10 characters
+                            </span>
+                    </span>
                 </div>
             </div>
             <br>
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{'has-error': employeeForm.get('email').errors}">
                 <label class="col-sm-6 control-label" for="email">Email</label>
                 <div class="col-sm-6">
                     <input id="email" type="text" formControlName="email" class="form-control">
+                    <span *ngIf="employeeForm.get('email').errors && employeeForm.get('email').errors.email">
+                        Email should be in format abc@abc.org
+                    </span>
                 </div>
             </div>
 
