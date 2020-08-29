@@ -12,8 +12,8 @@ export class CreateEmployeeComponent implements OnInit {
   validationMessages = {
     'fullName': {
       'required': 'Full Name is required.',
-      'minLength': 'Full Name must be greater than 2 characters.',
-      'maxLength': 'Full Name must be less than 2 characters.'
+      'minlength': 'Full Name must be greater than 2 characters.',
+      'maxlength': 'Full Name must be less than 10 characters.'
     },
     'email': {
       'required': 'Email is required.'
@@ -66,22 +66,30 @@ export class CreateEmployeeComponent implements OnInit {
     // this.employeeForm.valueChanges.subscribe(value => {
     //   console.log(JSON.stringify(value));
     // });
+    this.employeeForm.valueChanges.subscribe((data) => {
+      this.logValidationErrors(this.employeeForm);
+    });
   }
 
-  logValidationErrors(group :FormGroup): void{
+  //if we dont pass any FormGroup object then is assigns default value as this.employeeForm
+  logValidationErrors(group :FormGroup = this.employeeForm): void{
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if(abstractControl instanceof FormGroup){
         this.logValidationErrors(abstractControl);
       }
       else{
+        //if user clicks more than 1 time then on 2nd time below will clear the previous setted error
         this.formErrors[key] = '';
-        if(abstractControl && abstractControl.invalid){
+        //touched means  field is  clicked
+        //if touched and is not valid then enter below case
+        if(abstractControl && abstractControl.invalid && (abstractControl.touched || abstractControl.dirty)){
           const messages = this.validationMessages[key];
           //in below errorKey is kind of error like 'required','minLength','maxLength' etc..
           for(const errorKey in abstractControl.errors){
             if(errorKey){
               this.formErrors[key] += messages[errorKey] + ' ';
+              console.log('Error json ',this.formErrors);
             }
           }
         }
@@ -108,8 +116,8 @@ export class CreateEmployeeComponent implements OnInit {
     //});
     //to log key value pairs of formGroup
     //this.logKeyValuePairs(this.employeeForm);
-    this.logValidationErrors(this.employeeForm);
-    console.log('formErrors = ',this.formErrors);
+    // this.logValidationErrors(this.employeeForm);
+    // console.log('formErrors = ',this.formErrors);
   }
 
 }
