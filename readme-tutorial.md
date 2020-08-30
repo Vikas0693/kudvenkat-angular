@@ -12,3 +12,6 @@ Video 16: Instead of setting static domain in validation function we pass dynami
     using concept called closures
     a)what is closure? Its a func. that returns another function.
     b)so inside a emailDomain function we are accepting valid domains and use it to check in inner anonymous function
+
+Video 17: Added CustomValidator.ts class for reusable accross whole angular app
+    a)*add static keyword for reusability
