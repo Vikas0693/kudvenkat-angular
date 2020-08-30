@@ -1,4 +1,5 @@
 In below points * means important
+Little tweaks made by me are represented using $
 
 video 15: Creating custom validators
     a)look at required validator function of Validators class.We want our validator to look like that.
@@ -15,3 +16,9 @@ Video 16: Instead of setting static domain in validation function we pass dynami
 
 Video 17: Added CustomValidator.ts class for reusable accross whole angular app
     a)*add static keyword for reusability
+
+Video 18: Adding cross-validation i.e Validation on one input based on value of another input
+    a)$created new custom validator 'matchEmail' on formGroup named emailGroup
+    b)modified logValidationErros to add validation checks to formErrors on FormGroup
+    c)Added validation on emailGroup in employeeForm
+    d)validationMessages and formErrors propert updated with emailGroup key

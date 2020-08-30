@@ -20,6 +20,12 @@ export class CreateEmployeeComponent implements OnInit {
       'required': 'Email is required.',
       'emailDomain': 'Domain does not match the required domain \'dell.com\''
     },
+    'confirmEmail': {
+      'required': 'Confirm Email is required.'
+    },
+    'emailGroup': {
+      'emailMismatch': 'Email & Confirm Email do not match.'
+    },
     'phone': {
       'required': 'Phone number is required.'
     },
@@ -36,6 +42,8 @@ export class CreateEmployeeComponent implements OnInit {
   formErrors = {
     'fullName': '',
     'email': '',
+    'confirmEmail': '',
+    'emailGroup': '',
     'phone':'',
     'skillName': '',
     'experienceInYears': '',
@@ -57,7 +65,10 @@ export class CreateEmployeeComponent implements OnInit {
     this.employeeForm = this.fb.group({
       fullName: ['',[Validators.required,Validators.minLength(2), Validators.maxLength(10)]],
       contactPreference: ['email'],//since default value is email and its a radio then no need for validation
-      email: ['',[Validators.required, CustomValidators.emailDomain('dell.com')]],
+      emailGroup: this.fb.group({
+        email: ['',[Validators.required,  CustomValidators.emailDomain('dell.com')]],
+        confirmEmail: ['',Validators.required],
+      }, {validator: CustomValidators.matchEmail('email','confirmEmail')}),
       phone: [''],//no validation is added, so its added dynamically when user choose phone number as option in contactPreference
       skills: this.fb.group({
         skillName: ['',Validators.required],
@@ -105,27 +116,25 @@ export class CreateEmployeeComponent implements OnInit {
   logValidationErrors(group :FormGroup = this.employeeForm): void{
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
-      if(abstractControl instanceof FormGroup){
-        this.logValidationErrors(abstractControl);
-      }
-      else{
-        //if user clicks more than 1 time then on 2nd time below will clear the previous setted error
-        this.formErrors[key] = '';
-        //touched means  field is  clicked
-        //if touched and is not valid then enter below case
-        if(abstractControl && abstractControl.invalid && (abstractControl.touched || abstractControl.dirty)){
-          const messages = this.validationMessages[key];
-          //in below errorKey is kind of error like 'required','minLength','maxLength' etc..
-          for(const errorKey in abstractControl.errors){
-            if(errorKey){
-              this.formErrors[key] += messages[errorKey] + ' ';
-              console.log('Error json ',this.formErrors);
-            }
+      //if user clicks more than 1 time then on 2nd time below will clear the previous setted error
+      this.formErrors[key] = '';
+      //touched means  field is  clicked
+      //if touched and is not valid then enter below case
+      if(abstractControl && abstractControl.invalid && (abstractControl.touched || abstractControl.dirty)){
+        const messages = this.validationMessages[key];
+        //in below errorKey is kind of error like 'required','minLength','maxLength' etc..
+        for(const errorKey in abstractControl.errors){
+          if(errorKey){
+            this.formErrors[key] += messages[errorKey] + ' ';
+            console.log('Error json ',this.formErrors);
           }
         }
       }
+      if(abstractControl instanceof FormGroup){
+        this.logValidationErrors(abstractControl);
+      }
     });
-
+    
   }
 
   onSubmit(): void{
