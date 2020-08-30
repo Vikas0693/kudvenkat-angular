@@ -18,6 +18,9 @@ export class CreateEmployeeComponent implements OnInit {
     'email': {
       'required': 'Email is required.'
     },
+    'phone': {
+      'required': 'Phone number is required.'
+    },
     'skillName': {
       'required': 'Skill name is required.'
     },
@@ -31,6 +34,7 @@ export class CreateEmployeeComponent implements OnInit {
   formErrors = {
     'fullName': '',
     'email': '',
+    'phone':'',
     'skillName': '',
     'experienceInYears': '',
     'proficiency': ''
@@ -50,7 +54,9 @@ export class CreateEmployeeComponent implements OnInit {
     }); */
     this.employeeForm = this.fb.group({
       fullName: ['',[Validators.required,Validators.minLength(2), Validators.maxLength(10)]],
+      contactPreference: ['email'],//since default value is email and its a radio then no need for validation
       email: ['',Validators.required],
+      phone: [''],//no validation is added, so its added dynamically when user choose phone number as option in contactPreference
       skills: this.fb.group({
         skillName: ['',Validators.required],
         experienceInYears: ['',Validators.required],
@@ -66,9 +72,31 @@ export class CreateEmployeeComponent implements OnInit {
     // this.employeeForm.valueChanges.subscribe(value => {
     //   console.log(JSON.stringify(value));
     // });
-    this.employeeForm.valueChanges.subscribe((data) => {
+    this.employeeForm.valueChanges.subscribe((newData) => {
+      //console.log('Value changs Observable on employeeForm got hit');
       this.logValidationErrors(this.employeeForm);
     });
+
+    //subscribe to contactPreference so that when user chooses phone validation is added to phone input element
+    this.employeeForm.get('contactPreference').valueChanges.subscribe((newData: string)=>{
+      this.onContactPreferenceChange(newData);
+    });
+    
+  }
+
+  onContactPreferenceChange(optionChoosed: string){
+    const phone_FormControl = this.employeeForm.get('phone');
+    if(optionChoosed === 'phone'){
+      console.log('set phone validators');
+      phone_FormControl.setValidators([Validators.required]);
+      phone_FormControl.markAsTouched();
+    }
+    else{
+      console.log('clear phone validators');
+      phone_FormControl.clearValidators();
+    }
+    //updateValueAndValidity() immediately updates the value which in turn calls valueChanges() observable which we have subscribed in ngOnInit()
+    phone_FormControl.updateValueAndValidity();
   }
 
   //if we dont pass any FormGroup object then is assigns default value as this.employeeForm
