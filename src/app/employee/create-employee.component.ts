@@ -17,7 +17,7 @@ export class CreateEmployeeComponent implements OnInit {
     },
     'email': {
       'required': 'Email is required.',
-      'emailDomain': 'Domain does not match the required domain \'pragimtech.com\''
+      'emailDomain': 'Domain does not match the required domain \'dell.com\''
     },
     'phone': {
       'required': 'Phone number is required.'
@@ -56,7 +56,7 @@ export class CreateEmployeeComponent implements OnInit {
     this.employeeForm = this.fb.group({
       fullName: ['',[Validators.required,Validators.minLength(2), Validators.maxLength(10)]],
       contactPreference: ['email'],//since default value is email and its a radio then no need for validation
-      email: ['',[Validators.required, emailDomain]],
+      email: ['',[Validators.required, emailDomain('dell.com')]],
       phone: [''],//no validation is added, so its added dynamically when user choose phone number as option in contactPreference
       skills: this.fb.group({
         skillName: ['',Validators.required],
@@ -151,18 +151,23 @@ export class CreateEmployeeComponent implements OnInit {
 }
 /**
  * @description
- * Email with domain of pragimtech.com is allowed
- * @param 
- * FormControl obj for which to check domain value in email
+ * domain allowed to be enter in input box
+ * so add this validator like [emailDomain('domain.com')]
  */
-function emailDomain(control: AbstractControl): {[key: string] : any} | null{
-    //to validate email with pragimtech.com domain
-    const email: string = control.value;
-    const domain = email.substr(email.lastIndexOf('@')+1);
-    if(email==='' || domain.toLowerCase() === 'pragimtech.com'){
-      return null;
-    }
-    else{
-      return {'emailDomain': true};
-    }
+function emailDomain(domainPassed: string ){
+    /**
+     *  @param 
+     * FormControl obj for which to check domain value in email
+    */
+    return (control: AbstractControl): {[key: string] : any} | null => {
+      //to validate email with pragimtech.com domain
+      const email: string = control.value;
+      const domain = email.substr(email.lastIndexOf('@')+1);
+      if(email==='' || domain.toLowerCase() === domainPassed.toLowerCase()){
+        return null;
+      }
+      else{
+        return {'emailDomain': true};
+      }
+    };
 };

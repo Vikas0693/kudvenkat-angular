@@ -7,3 +7,8 @@ video 15: Creating custom validators
     d)add custom validation to form control of email
     e)add custom meesage to custom validator in validationMessages property
     f)*also add those check for which you dont want validation in custom validator. For eg we don't want to check for required validation in email form control as it is handled by default angular validator 'required'
+
+Video 16: Instead of setting static domain in validation function we pass dynamic domain to validation function     
+    using concept called closures
+    a)what is closure? Its a func. that returns another function.
+    b)so inside a emailDomain function we are accepting valid domains and use it to check in inner anonymous function
