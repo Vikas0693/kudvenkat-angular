@@ -72,8 +72,8 @@
                 </div>
             </div>
 
-            <div class=" ">
-                <div formGroupName="skills">
+            <div formArrayName="skills">
+                <div formGroupName="0">
                     <div class="form-group"  [ngClass]="{'has-error':formErrors.skillName}">
                         <div class="row">
                             <label class="col-md-2 control-label" for="skillName">

@@ -70,11 +70,9 @@ export class CreateEmployeeComponent implements OnInit {
         confirmEmail: ['',Validators.required],
       }, {validator: CustomValidators.matchEmail('email','confirmEmail')}),
       phone: [''],//no validation is added, so its added dynamically when user choose phone number as option in contactPreference
-      skills: this.fb.group({
-        skillName: ['',Validators.required],
-        experienceInYears: ['',Validators.required],
-        proficiency: ['',Validators.required]
-      })
+      skills: this.fb.array([
+        this.addSkillFormGroup()
+      ])
     });
     //console.log('Employee Form full name error :',this.employeeForm.get('fullName').errors);
     //control valueChanges
@@ -95,6 +93,14 @@ export class CreateEmployeeComponent implements OnInit {
       this.onContactPreferenceChange(newData);
     });
     
+  }
+
+  addSkillFormGroup(): FormGroup{
+    return this.fb.group({
+      skillName: ['',Validators.required],
+      experienceInYears: ['',Validators.required],
+      proficiency: ['',Validators.required]
+    })
   }
 
   onContactPreferenceChange(optionChoosed: string){
@@ -132,6 +138,14 @@ export class CreateEmployeeComponent implements OnInit {
       }
       if(abstractControl instanceof FormGroup){
         this.logValidationErrors(abstractControl);
+      }
+      else if(abstractControl instanceof FormArray){
+        //loop through array and pass groups to logValidationError();
+        for(const group of abstractControl.controls){
+          if(group instanceof FormGroup){
+            this.logValidationErrors(group);
+          }
+        }
       }
     });
     

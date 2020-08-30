@@ -28,3 +28,8 @@ Video 19: Understanding FormArray
     b)*If any of the elements of formArray has validation error like required,minLength etc.. then whole formArray will have the validation error
     c)*Usefull methods of FormArray - push(formCntrol/formGroup/formArray object),insert(index),removeAt(index),setControl(index):replaces the control at index,at(index):returns control currently at index.
     d)*Diff b/w formArray and formGroup - formArray serializes elments as array and formGroup serializes elements as objects. Try loading data on createEmployee page and look for elements in FormArray and FormGroup
+
+Video 20: Preparing for adding dynamic input tags
+    a)added formArray to skills in employeeForm
+    b)added formArrayName attribute in component.html
+    c)updated logValidationErrors method of CreateEmployee to handle validation in FormArray namely 'skills'
