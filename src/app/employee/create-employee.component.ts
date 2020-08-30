@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CustomValidators } from '../shared/custom.validators';
 
 @Component({
   selector: 'app-create-employee',
@@ -56,7 +57,7 @@ export class CreateEmployeeComponent implements OnInit {
     this.employeeForm = this.fb.group({
       fullName: ['',[Validators.required,Validators.minLength(2), Validators.maxLength(10)]],
       contactPreference: ['email'],//since default value is email and its a radio then no need for validation
-      email: ['',[Validators.required, emailDomain('dell.com')]],
+      email: ['',[Validators.required, CustomValidators.emailDomain('dell.com')]],
       phone: [''],//no validation is added, so its added dynamically when user choose phone number as option in contactPreference
       skills: this.fb.group({
         skillName: ['',Validators.required],
@@ -149,25 +150,3 @@ export class CreateEmployeeComponent implements OnInit {
     // console.log('formErrors = ',this.formErrors);
   }
 }
-/**
- * @description
- * domain allowed to be enter in input box
- * so add this validator like [emailDomain('domain.com')]
- */
-function emailDomain(domainPassed: string ){
-    /**
-     *  @param 
-     * FormControl obj for which to check domain value in email
-    */
-    return (control: AbstractControl): {[key: string] : any} | null => {
-      //to validate email with pragimtech.com domain
-      const email: string = control.value;
-      const domain = email.substr(email.lastIndexOf('@')+1);
-      if(email==='' || domain.toLowerCase() === domainPassed.toLowerCase()){
-        return null;
-      }
-      else{
-        return {'emailDomain': true};
-      }
-    };
-};
