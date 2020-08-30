@@ -22,3 +22,9 @@ Video 18: Adding cross-validation i.e Validation on one input based on value of 
     b)modified logValidationErros to add validation checks to formErrors on FormGroup
     c)Added validation on emailGroup in employeeForm
     d)validationMessages and formErrors propert updated with emailGroup key
+
+Video 19: Understanding FormArray
+    a)FormArray can have nested formControl and formGroup and formArray
+    b)*If any of the elements of formArray has validation error like required,minLength etc.. then whole formArray will have the validation error
+    c)*Usefull methods of FormArray - push(formCntrol/formGroup/formArray object),insert(index),removeAt(index),setControl(index):replaces the control at index,at(index):returns control currently at index.
+    d)*Diff b/w formArray and formGroup - formArray serializes elments as array and formGroup serializes elements as objects. Try loading data on createEmployee page and look for elements in FormArray and FormGroup

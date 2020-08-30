@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { CustomValidators } from '../shared/custom.validators';
 
 @Component({
@@ -142,20 +142,46 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   onLoadDataClick(): void{
-    //in setValue method it is mandatory to set all fields but in patchValue we set subset fields
-    //this.employeeForm.setValue({
-      //this.employeeForm.patchValue({
-      //fullName: 'Vikas Sharma',
-      //email: null,
-      /* skills: {
-        skillName: 'Python',
-        experienceInYears: 2,
-        proficiency: 'beginner'
-      } */
-    //});
-    //to log key value pairs of formGroup
-    //this.logKeyValuePairs(this.employeeForm);
-    // this.logValidationErrors(this.employeeForm);
-    // console.log('formErrors = ',this.formErrors);
+    const formArray = new FormArray([
+      new FormControl('John', Validators.required),
+      new FormGroup({
+        country: new FormControl('',Validators.required)
+      }),
+      new FormArray([
+        new FormControl('Me')
+      ])
+    ]);
+
+    
+    console.log(`Form Array length = ${formArray.length}`);
+
+    for(const control of formArray.controls){
+      if(control instanceof FormControl){
+        console.log('Control is FormControl');
+      }
+      else if(control instanceof FormGroup){
+        console.log('Control is FormGroup');
+      }
+      else{
+        console.log('Control is FormArray');
+      }
+    }
+
+    //another way to create formArray 
+    const formArray1 = this.fb.array([
+      new FormControl('John', Validators.required),
+      new FormControl('IT', Validators.required),
+      new FormControl('', Validators.required),
+    ]);
+    console.log(formArray1.value);
+    //valid will be false if any of elements of formArray1 fails validation
+    console.log(formArray1.valid);
+    const formGroup = this.fb.group([
+      new FormControl('John', Validators.required),
+      new FormControl('IT', Validators.required),
+      new FormControl('', Validators.required),
+    ]);
+    console.log('Serialized FormArray ',formArray1);
+    console.log('Serialized FormGroup ',formGroup);
   }
 }
