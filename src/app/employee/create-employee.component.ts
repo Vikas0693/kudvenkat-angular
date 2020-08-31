@@ -95,6 +95,10 @@ export class CreateEmployeeComponent implements OnInit {
     
   }
 
+  addSkillButtonClick(): void{
+    (<FormArray>this.employeeForm.get('skills')).push(this.addSkillFormGroup());
+  }
+
   addSkillFormGroup(): FormGroup{
     return this.fb.group({
       skillName: ['',Validators.required],
@@ -102,6 +106,8 @@ export class CreateEmployeeComponent implements OnInit {
       proficiency: ['',Validators.required]
     })
   }
+
+  
 
   onContactPreferenceChange(optionChoosed: string){
     const phone_FormControl = this.employeeForm.get('phone');

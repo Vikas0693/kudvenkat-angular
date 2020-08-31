@@ -33,3 +33,7 @@ Video 20: Preparing for adding dynamic input tags
     a)added formArray to skills in employeeForm
     b)added formArrayName attribute in component.html
     c)updated logValidationErrors method of CreateEmployee to handle validation in FormArray namely 'skills'
+
+Video 21: Added add-skill button to add group to form
+    a)*TypeCasted AbsractControl to FormArray in CreateEmployee component.ts
+    b)*Accessing ForomArray function 'controls' on AbstractControl in employee.component.html

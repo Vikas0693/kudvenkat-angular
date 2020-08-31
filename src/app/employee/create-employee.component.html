@@ -78,12 +78,12 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-offset-2">
-                            <button class="btn btn-primary">Add Skill</button>
+                            <button class="btn btn-primary" (click)="addSkillButtonClick()">Add Skill</button>
                         </div>
                     </div>
                 </div>
-                <div formArrayName="skills">
-                    <div formGroupName="0">
+                <div formArrayName="skills" *ngFor="let skill of employeeForm.get('skills')['controls']; let i = index">
+                    <div [formGroupName]="i">
                         <div class="form-group" [ngClass]="{'has-error':formErrors.skillName}">
                             <div class="row">
                                 <label class="col-md-2 control-label" for="skillName">
