@@ -28,15 +28,6 @@ export class CreateEmployeeComponent implements OnInit {
     },
     'phone': {
       'required': 'Phone number is required.'
-    },
-    'skillName': {
-      'required': 'Skill name is required.'
-    },
-    'experienceInYears': {
-      'required': 'Experience is required.'
-    },
-    'proficiency': {
-      'required': 'Proficiency is required.'
     }
   };
   formErrors = {
@@ -44,10 +35,7 @@ export class CreateEmployeeComponent implements OnInit {
     'email': '',
     'confirmEmail': '',
     'emailGroup': '',
-    'phone':'',
-    'skillName': '',
-    'experienceInYears': '',
-    'proficiency': ''
+    'phone':''
   };
 
   constructor(private fb: FormBuilder) { }
@@ -144,14 +132,6 @@ export class CreateEmployeeComponent implements OnInit {
       }
       if(abstractControl instanceof FormGroup){
         this.logValidationErrors(abstractControl);
-      }
-      else if(abstractControl instanceof FormArray){
-        //loop through array and pass groups to logValidationError();
-        for(const group of abstractControl.controls){
-          if(group instanceof FormGroup){
-            this.logValidationErrors(group);
-          }
-        }
       }
     });
     

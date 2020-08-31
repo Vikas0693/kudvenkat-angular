@@ -36,4 +36,17 @@ Video 20: Preparing for adding dynamic input tags
 
 Video 21: Added add-skill button to add group to form
     a)*TypeCasted AbsractControl to FormArray in CreateEmployee component.ts
-    b)*Accessing ForomArray function 'controls' on AbstractControl in employee.component.html
+    b)*Accessing ForomArray function named 'controls' on AbstractControl in employee.component.html using ['controls']
+
+Video 22: To focus correct input element on clicking a label we set dynamic id's of input
+    a)*used attribute binding with for attribute in label in create-employee.html
+    b)*used property binding with id property in input element in create-employee.html
+
+Video 23: Handling Validation Exceptions for added skills
+    a)*FormControl accessed via control property as well as get() method in createEmployee.component.html
+    b)*Question Mark(?) is called as safe navigation operator and is used in html for safe navigation from null and undefined.
+    c)removed logValidation on blur event because now validation has moved to html itself
+    d)*removed a patch from logValidationErrors() because the validation are itself done in component.html
+
+Video 24: Adding validation to FormArray. Disabling AddSkill button if any of formGroup is invalid. We know FormFroup is invalid if any of its fromControl is invalid
+    a)User cannot add more skills untill all FormGroups in FormArray are valid

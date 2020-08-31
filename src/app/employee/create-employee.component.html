@@ -78,62 +78,62 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-offset-2">
-                            <button class="btn btn-primary" (click)="addSkillButtonClick()">Add Skill</button>
+                            <button class="btn btn-primary" (click)="addSkillButtonClick()"
+                            [disabled]="employeeForm.controls.skills.invalid">Add Skill</button>
                         </div>
                     </div>
                 </div>
                 <div formArrayName="skills" *ngFor="let skill of employeeForm.get('skills')['controls']; let i = index">
+                    <hr *ngIf="i > 0">
                     <div [formGroupName]="i">
-                        <div class="form-group" [ngClass]="{'has-error':formErrors.skillName}">
+                        <div class="form-group" [ngClass]="{'has-error':(skill.get('skillName').invalid && skill.get('skillName').touched)}">
                             <div class="row">
-                                <label class="col-md-2 control-label" for="skillName">
+                                <label class="col-md-2 control-label" [attr.for]="'skillName'+i">
                                     Skill
                                 </label>
                                 <div class="col-md-6 nopadding">
-                                    <input type="text" class="form-control" id="skillName"
-                                        placeholder="C#, Java, Angular etc.." formControlName="skillName"
-                                        (blur)="logValidationErrors()">
-                                    <span class="help-block" *ngIf="formErrors.skillName">
-                                        {{formErrors.skillName}}
+                                    <input type="text" class="form-control" [id]="'skillName'+i"
+                                        placeholder="C#, Java, Angular etc.." formControlName="skillName">
+                                    <span class="help-block" *ngIf="skill.controls.skillName.errors?.required && skill.controls.skillName.touched">
+                                        Skill Name is required.
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group" [ngClass]="{'has-error': formErrors.experienceInYears}">
+                        <div class="form-group" [ngClass]="{'has-error': (skill.get('experienceInYears').invalid && skill.get('experienceInYears').touched)}">
                             <div class="row">
-                                <label class="col-sm-2 control-label" for="experienceInYears">
+                                <label class="col-sm-2 control-label" [attr.for]="'experienceInYears'+i">
                                     Experience
                                 </label>
                                 <div class="col-md-6 nopadding">
-                                    <input type="text" class="form-control" id="experienceInYears"
-                                        placeholder="In Years" formControlName="experienceInYears"
-                                        (blur)="logValidationErrors()">
-                                    <span class="help-block" *ngIf="formErrors.experienceInYears">
-                                        {{formErrors.experienceInYears}}
+                                    <input type="text" class="form-control" [id]="'experienceInYears'+i"
+                                        placeholder="In Years" formControlName="experienceInYears">
+                                    <span class="help-block" *ngIf="skill.get('experienceInYears').errors?.required && skill.get('experienceInYears').touched">
+                                        Experience In Years is required
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group" [ngClass]="{'has-error': formErrors.proficiency}">
+                        <div class="form-group" [ngClass]="{'has-error': (skill.get('proficiency').invalid && skill.get('proficiency').touched)}">
                             <div class="row">
                                 <label class="col-md-2 control-label">Proficiency</label>
                                 <div class="col-md-4 nopadding">
                                     <label class="radio-inline">
                                         <input id="proficiency" type="radio" value="beginner"
-                                            formControlName="proficiency" (blur)="logValidationErrors()">Beginner
+                                            formControlName="proficiency">Beginner
                                     </label>
                                     <label class="radio-inline">
                                         <input id="proficiency" type="radio" value="intermediate"
-                                            formControlName="proficiency" (blur)="logValidationErrors()">Intermediate
+                                            formControlName="proficiency">Intermediate
                                     </label>
                                     <label class="radio-inline">
                                         <input id="proficiency" type="radio" value="advanced"
-                                            formControlName="proficiency" (blur)="logValidationErrors()">Advanced
+                                            formControlName="proficiency">Advanced
                                     </label>
-                                    <span class="help-block" *ngIf="formErrors.proficiency">
-                                        {{formErrors.proficiency}}
+                                    <span class="help-block" *ngIf="(skill.get('proficiency').errors?.required && skill.get('proficiency').touched)">
+                                        Proficiency is required.
                                     </span>
                                 </div>
                             </div>
