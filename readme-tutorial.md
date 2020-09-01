@@ -50,3 +50,5 @@ Video 23: Handling Validation Exceptions for added skills
 
 Video 24: Adding validation to FormArray. Disabling AddSkill button if any of formGroup is invalid. We know FormFroup is invalid if any of its fromControl is invalid
     a)User cannot add more skills untill all FormGroups in FormArray are valid
+
+Video 25: *Added remove skill button only if no. of skills formGroup are greater than 1 using the length property of FormArray in component.html

@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-md-offset-2">
                             <button class="btn btn-primary" (click)="addSkillButtonClick()"
-                            [disabled]="employeeForm.controls.skills.invalid">Add Skill</button>
+                            [disabled]="employeeForm.controls.skills.invalid" title="Enter atleast one skill related detail">Add Skill</button>
                         </div>
                     </div>
                 </div>
@@ -97,6 +97,11 @@
                                     <span class="help-block" *ngIf="skill.controls.skillName.errors?.required && skill.controls.skillName.touched">
                                         Skill Name is required.
                                     </span>
+                                </div>
+                                <div class="col-md-2" *ngIf="employeeForm.get('skills')['length']>1">
+                                    <button class="btn btn-danger btn-sm pull-right" title="Remove this skill." (click)="removeSkillButtonClick(i)">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
