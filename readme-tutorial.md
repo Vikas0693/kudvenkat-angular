@@ -52,3 +52,10 @@ Video 24: Adding validation to FormArray. Disabling AddSkill button if any of fo
     a)User cannot add more skills untill all FormGroups in FormArray are valid
 
 Video 25: *Added remove skill button only if no. of skills formGroup are greater than 1 using the length property of FormArray in component.html
+
+Video 26: Added table in ListComponent
+    a)*Using json-server to implement fake rest api calls
+    b)install json-server and run using 'json-server --watch db.json' where db.json contains our dummy data
+    c)Getting data from server to display list of employees
+
+Video 27:
