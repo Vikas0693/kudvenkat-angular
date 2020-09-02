@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from './employee.service';
 import { IEmployee } from './IEmployee';
 import { ISkill } from './ISkill';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-employee',
@@ -14,6 +15,7 @@ import { ISkill } from './ISkill';
 export class CreateEmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
+  employee: IEmployee;
   validationMessages = {
     'fullName': {
       'required': 'Full Name is required.',
@@ -42,7 +44,8 @@ export class CreateEmployeeComponent implements OnInit {
     'phone':''
   };
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private employeeService: EmployeeService) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private employeeService: EmployeeService,
+            private router: Router) { }
 
   ngOnInit(): void {
     /* this.employeeForm = new FormGroup({
@@ -97,7 +100,10 @@ export class CreateEmployeeComponent implements OnInit {
 
   getEmployee(id:number){
     this.employeeService.getEmployee(id).subscribe(
-      (employee: IEmployee)=> this.editEmployee(employee),
+      (employee: IEmployee)=> {
+        this.editEmployee(employee);
+        this.employee = employee;
+      },
       (error: any) => console.log(error)
     );
   }
@@ -151,8 +157,6 @@ export class CreateEmployeeComponent implements OnInit {
     })
   }
 
-  
-
   onContactPreferenceChange(optionChoosed: string){
     const phone_FormControl = this.employeeForm.get('phone');
     if(optionChoosed === 'phone'){
@@ -194,7 +198,11 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   onSubmit(): void{
-    console.log(this.employeeForm.value);
+    this.mapFormValuesToEmployeeModel();
+    this.employeeService.updateEmployee(this.employee).subscribe(
+      () => {this.router.navigate(['list'],{skipLocationChange: true});},
+      (err:any) => console.log(err)
+    );
   }
 
   onLoadDataClick(): void{
@@ -240,4 +248,19 @@ export class CreateEmployeeComponent implements OnInit {
     console.log('Serialized FormArray ',formArray1);
     console.log('Serialized FormGroup ',formGroup);
   }
+  /**
+   * @description
+   * transfer data from employeeForm to IEmployee object to be sent to backened
+   */
+  mapFormValuesToEmployeeModel(){
+    
+    //this.employee.fullName = this.employeeForm.get('fullName').value;
+    //both instruction do the same thing
+    this.employee.fullName = this.employeeForm.value.fullName;
+    this.employee.contactPreference = this.employeeForm.get('contactPreference').value;
+    this.employee.email = this.employeeForm.get('emailGroup').get('email').value;
+    this.employee.phone = this.employeeForm.get('phone').value;
+    this.employee.skills = this.employeeForm.get('skills').value;
+  }
 }
+

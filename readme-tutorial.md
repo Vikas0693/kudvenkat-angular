@@ -63,4 +63,8 @@ Video 27: Working on Edit employee Link in createEmployeeComponent
     b)Updating data from backened to current Form
 
 Vide 28: Updating FormArray data of form from server
-    a)*Accessing element of FormArray in component.html
+    a)*Accessing element of FormArray in component.html via 'formArrayname.0' where 0 is index
+    b)$there are two way to add data to formarray 1)create new formarray and add validations and data 2)get existing formarray and remove element at 0th index if 0th index is added at the time of creation of formArray
+
+Video 29:
+    a)
