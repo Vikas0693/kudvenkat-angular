@@ -16,6 +16,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   employeeForm: FormGroup;
   employee: IEmployee;
+  pageTitle: string;
   validationMessages = {
     'fullName': {
       'required': 'Full Name is required.',
@@ -91,8 +92,21 @@ export class CreateEmployeeComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       //+ converts string to number
       const empId = +params.get('id');
+      //if empId is not null then we know that user has come from list employee page
       if(empId){
         this.getEmployee(empId);
+        this.pageTitle = "Edit Employee"
+      }//in else part new employee is being created by user
+      else{
+        this.pageTitle = "Create Employee"
+        this.employee = {
+          id: null,
+          fullName: null,
+          contactPreference: null,
+          email: null,
+          phone: null,
+          skills: []
+        }
       }
     });
     
@@ -199,10 +213,19 @@ export class CreateEmployeeComponent implements OnInit {
 
   onSubmit(): void{
     this.mapFormValuesToEmployeeModel();
-    this.employeeService.updateEmployee(this.employee).subscribe(
-      () => {this.router.navigate(['list'],{skipLocationChange: true});},
-      (err:any) => console.log(err)
-    );
+    //below if condition check if employee already has id to some number then we are updating existing Employee else we have to create one
+    if(this.employee.id){
+      this.employeeService.updateEmployee(this.employee).subscribe(
+        () => {this.router.navigate(['list'],{skipLocationChange: true});},
+        (err:any) => console.log(err)
+      );
+    }
+    else{
+      this.employeeService.addEmployee(this.employee).subscribe(
+        () => {this.router.navigate(['list']);},
+        (err:any) => console.log(err)
+      );
+    }
   }
 
   onLoadDataClick(): void{

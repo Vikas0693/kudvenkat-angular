@@ -42,6 +42,146 @@
           "proficiency": "advanced"
         }
       ]
+    },
+    {
+      "id": 3,
+      "fullName": "vikas",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "289",
+      "skills": [
+        {
+          "skillName": "C",
+          "experienceInYears": "212",
+          "proficiency": "intermediate"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "fullName": "sharma",
+      "contactPreference": "phone",
+      "email": "vikas@dell.com",
+      "phone": "266939",
+      "skills": [
+        {
+          "skillName": "asd",
+          "experienceInYears": "23",
+          "proficiency": "advanced"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "fullName": "asd",
+      "contactPreference": "email",
+      "email": "ad@dell.com",
+      "phone": "sd",
+      "skills": [
+        {
+          "skillName": "asd",
+          "experienceInYears": "2",
+          "proficiency": "advanced"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "fullName": "aksdj",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "",
+      "skills": [
+        {
+          "skillName": "asd",
+          "experienceInYears": "123",
+          "proficiency": "intermediate"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "fullName": "asdn",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "",
+      "skills": [
+        {
+          "skillName": "asjdn",
+          "experienceInYears": "asd",
+          "proficiency": "intermediate"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "fullName": "asdn",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "",
+      "skills": [
+        {
+          "skillName": "asjdn",
+          "experienceInYears": "asd",
+          "proficiency": "intermediate"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "fullName": ",kb",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "000000",
+      "skills": [
+        {
+          "skillName": "sz",
+          "experienceInYears": "234",
+          "proficiency": "beginner"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "fullName": ",kb",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "000000",
+      "skills": [
+        {
+          "skillName": "12",
+          "experienceInYears": "234",
+          "proficiency": "beginner"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "fullName": ",kb",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "000000",
+      "skills": [
+        {
+          "skillName": "12423",
+          "experienceInYears": "234",
+          "proficiency": "beginner"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "fullName": "asdk",
+      "contactPreference": "email",
+      "email": "a@dell.com",
+      "phone": "019241298309128308",
+      "skills": [
+        {
+          "skillName": "asdn",
+          "experienceInYears": "123",
+          "proficiency": "advanced"
+        }
+      ]
     }
   ]
 }

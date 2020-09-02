@@ -62,9 +62,14 @@ Video 27: Working on Edit employee Link in createEmployeeComponent
     a)Fixed validation on email and confirmEmail 
     b)Updating data from backened to current Form
 
-Vide 28: Updating FormArray data of form from server
+Vide 28: Updating FormArray data of form which came from server
     a)*Accessing element of FormArray in component.html via 'formArrayname.0' where 0 is index
     b)$there are two way to add data to formarray 1)create new formarray and add validations and data 2)get existing formarray and remove element at 0th index if 0th index is added at the time of creation of formArray
 
-Video 29:
-    a)
+Video 29: Updating backened with changes made in existing Employee
+    a)*skipLocationChange: true when navigating which keeps the url unchanged
+    b)request type put is made for updating existing data
+
+Video 30: Creating new Employee and adding it to backened
+    a)*Showing page title as 'Edit/Create Employee' based on from where user land on that page
+    b)Making post request to backened
