@@ -155,3 +155,40 @@
         </div>
     </div>
 </form>
+
+<div class="table-responsive">
+    <table border="1">
+        <tr>
+            <th>FormGroup</th>
+            <th>FormControl(Full Name only)</th>
+            <th>FormArray(Skills)</th>
+            <th>FormArray(Skills[0])</th>
+        </tr>
+        <tr>
+            <td>
+                touched: {{employeeForm.touched}}
+                <br> dirty: {{employeeForm.dirty}}
+                <br> valid: {{employeeForm.valid}}
+                <br> Form Values: {{employeeForm.value | json}}
+            </td>
+            <td>
+                touched: {{employeeForm.get('fullName').touched }}
+                <br> dirty: {{employeeForm.get('fullName').dirty }}
+                <br> valid: {{employeeForm.get('fullName').valid }}
+                <br> value: {{employeeForm.get('fullName').value }}
+            </td>
+            <td>
+                touched: {{employeeForm.get('skills').touched}}
+                <br> dirty: {{employeeForm.get('skills').dirty}}
+                <br> valid: {{employeeForm.get('skills').valid}}
+                <br> value: {{employeeForm.get('skills').value | json}}
+            </td>
+            <td>
+                touched: {{employeeForm.get('skills.0').touched}}
+                <br> dirty: {{employeeForm.get('skills.0').dirty}}
+                <br> valid: {{employeeForm.get('skills.0').valid}}
+                <br> value: {{employeeForm.get('skills.0').value | json}}
+            </td>
+        </tr>
+    </table>
+</div>

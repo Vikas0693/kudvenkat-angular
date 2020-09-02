@@ -112,6 +112,25 @@ export class CreateEmployeeComponent implements OnInit {
       },
       phone: employee.phone
     });
+    this.employeeForm.setControl('skills', this.setExistingSkills(employee.skills));
+  }
+
+  setExistingSkills(skillSets: ISkill[]): FormArray{
+    /* const formArray = <FormArray>this.employeeForm.get('skills');
+    formArray.removeAt(0); */
+    //we can either get existing FormArray and remove existing FormGroup at 0 which is created in ngOnInit(). Benefit is we won't need to add validations in this case
+    //else we can create completely new FormArray as below and add validations too
+    const formArray = this.fb.array([]);
+    skillSets.forEach(element => {
+      const grp = this.fb.group({
+        skillName: [element.skillName, Validators.required],
+        experienceInYears: [element.experienceInYears, Validators.required],
+        proficiency: [element.proficiency, Validators.required]
+      });
+      grp.markAllAsTouched();grp.markAsDirty();
+      formArray.push(grp);
+    }); 
+    return formArray;
   }
 
   addSkillButtonClick(): void{
@@ -119,7 +138,9 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   removeSkillButtonClick(indexOfSkillFormGroup : number): void{
-    (<FormArray>this.employeeForm.get('skills')).removeAt(indexOfSkillFormGroup);
+    const skillsFormArray = (<FormArray>this.employeeForm.get('skills'));
+    skillsFormArray.removeAt(indexOfSkillFormGroup);
+    skillsFormArray.markAsDirty();skillsFormArray.markAsTouched();
   }
 
   addSkillFormGroup(): FormGroup{

@@ -58,4 +58,9 @@ Video 26: Added table in ListComponent
     b)install json-server and run using 'json-server --watch db.json' where db.json contains our dummy data
     c)Getting data from server to display list of employees
 
-Video 27:
+Video 27: Working on Edit employee Link in createEmployeeComponent
+    a)Fixed validation on email and confirmEmail 
+    b)Updating data from backened to current Form
+
+Vide 28: Updating FormArray data of form from server
+    a)*Accessing element of FormArray in component.html
