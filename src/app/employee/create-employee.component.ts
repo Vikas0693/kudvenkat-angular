@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { CustomValidators } from '../shared/custom.validators';
+import { ActivatedRoute } from '@angular/router';
+import { EmployeeService } from './employee.service';
+import { IEmployee } from './IEmployee';
+import { ISkill } from './ISkill';
 
 @Component({
   selector: 'app-create-employee',
@@ -38,7 +42,7 @@ export class CreateEmployeeComponent implements OnInit {
     'phone':''
   };
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
     /* this.employeeForm = new FormGroup({
@@ -80,7 +84,34 @@ export class CreateEmployeeComponent implements OnInit {
     this.employeeForm.get('contactPreference').valueChanges.subscribe((newData: string)=>{
       this.onContactPreferenceChange(newData);
     });
+
+    this.route.paramMap.subscribe(params => {
+      //+ converts string to number
+      const empId = +params.get('id');
+      if(empId){
+        this.getEmployee(empId);
+      }
+    });
     
+  }
+
+  getEmployee(id:number){
+    this.employeeService.getEmployee(id).subscribe(
+      (employee: IEmployee)=> this.editEmployee(employee),
+      (error: any) => console.log(error)
+    );
+  }
+
+  editEmployee(employee: IEmployee) {
+    this.employeeForm.patchValue({
+      fullName: employee.fullName,
+      contactPreference: employee.contactPreference,
+      emailGroup: {
+        email: employee.email,
+        confirmEmail: employee.email
+      },
+      phone: employee.phone
+    });
   }
 
   addSkillButtonClick(): void{
@@ -124,7 +155,7 @@ export class CreateEmployeeComponent implements OnInit {
       this.formErrors[key] = '';
       //touched means  field is  clicked
       //if touched and is not valid then enter below case
-      if(abstractControl && abstractControl.invalid && (abstractControl.touched || abstractControl.dirty)){
+      if(abstractControl && abstractControl.invalid && (abstractControl.touched || abstractControl.dirty || abstractControl.value != '')){
         const messages = this.validationMessages[key];
         //in below errorKey is kind of error like 'required','minLength','maxLength' etc..
         for(const errorKey in abstractControl.errors){

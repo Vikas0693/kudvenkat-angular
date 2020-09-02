@@ -41,7 +41,7 @@ export class CustomValidators {
         const email = group.get(firstControlName);
         const confirmEmail = group.get(secondControlName);
         //pristine means user hasn't typed anything inside input box
-        if(email.value == confirmEmail.value || confirmEmail.pristine)
+        if(email.value == confirmEmail.value || (confirmEmail.pristine && confirmEmail.value === ''))
             return null;
         else
             return {'emailMismatch':true};
