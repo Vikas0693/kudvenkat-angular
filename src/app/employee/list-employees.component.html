@@ -1,4 +1,5 @@
-<div class="table-responsive">
+
+<div class="table-responsive" *ngIf="!listError; else errorOccurred">
     <table class="table table-bordered" *ngIf="employees && employees.length>0">
         <thead>
             <tr class="bg-primary">
@@ -20,3 +21,8 @@
         </tbody>
     </table>
 </div>
+<ng-template #errorOccurred>
+    <div class="has-error">
+        <span class="help-block">{{listError}}</span>
+    </div>
+</ng-template>

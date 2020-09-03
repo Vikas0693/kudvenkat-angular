@@ -73,3 +73,12 @@ Video 29: Updating backened with changes made in existing Employee
 Video 30: Creating new Employee and adding it to backened
     a)*Showing page title as 'Edit/Create Employee' based on from where user land on that page
     b)Making post request to backened
+
+Video 31:Modules in Angular
+    a)Feature Module:
+    b)Root Module:
+    c)Core Module: To create singleton services accross whole app and is imported in Root Module only.
+    d)Shared Module: Forms, Pipes,Directives etc are in Shared Modules.
+    e)Routing Module:
+    f)Home & pageNotFound component created with ng g c home --flat. Where flat does not create folder
+    g)Added Error Handling when list of employee is not showned
