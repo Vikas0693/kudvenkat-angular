@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http'
 
 //Our Modules
 import { AppRoutingModule } from './app-routing.module';
-import { EmployeeModule } from './employee/employee.module';
 
 //Services
 import { EmployeeService } from './employee/employee.service';
@@ -27,7 +26,6 @@ import { PageNotFoundComponent } from './page-not-found.component';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EmployeeModule,
     AppRoutingModule,
   ],
   providers: [EmployeeService],

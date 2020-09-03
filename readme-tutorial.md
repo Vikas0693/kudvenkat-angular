@@ -109,3 +109,11 @@ Video 34: Creating shared modules
 Video 35: Grouping Routes & Creating a component less route
     a)*all lazyloaded modules should have same route prefix hence we are creating parent route in employee-routing.module
     b)*'employees' route in employee-routing.module is component less route as it has no component attached to it.
+
+Video 36: Asynchronous routing loads route on demad. Helps in loading of webpages
+    a)2 requirements for lazy loading - 1)all routes in a module to lazy load should have same prefix as done in Video 35. 2)The module should not be referenced in any other module else it will be eagerly loaded
+    b)1)point is met in video 35 . 2)point is met by removing employeeModule from imports of app.module
+    c)add route in app-routing.module and remove parent route from employee-routing.module
+    d)dynamic import of EmployeeModule is done in app-routing.module
+    e)forChild is used in employee-routing.module as it throws errors that forRoot should be used only once.
+    f)Verify in source tab of network panel in developer tools of chrome
