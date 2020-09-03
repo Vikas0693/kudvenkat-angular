@@ -117,3 +117,8 @@ Video 36: Asynchronous routing loads route on demad. Helps in loading of webpage
     d)dynamic import of EmployeeModule is done in app-routing.module
     e)forChild is used in employee-routing.module as it throws errors that forRoot should be used only once.
     f)Verify in source tab of network panel in developer tools of chrome
+
+Video 37: Other than Eager and Lazy loading there is preloading strategy
+    a)*On initial app start page is loaded eagerly as we know app.module is always eager so while user interacts with eagerly loaded app , lazy loaded modules are downloaded in background after initial startup bundle is downloaded.
+    b)Add PreloadAllModules to forRoot of Router in app-routing.module
+    c)So no point of preloading if we dont have any lazy loading configurations
