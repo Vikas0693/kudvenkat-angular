@@ -103,4 +103,9 @@ Video 34: Creating shared modules
     c)Should not import or re-export modules that have providers
     d)Can be imported in all modules where we need shared modules
     e)ng g m shared/shared --flat -m employee/employee command is used to create shared module
-    f)Moved Common/ReactiveFormsModule from employee.module to shared.module
+    f)*Moved Common/ReactiveFormsModule from employee.module to shared.module
+    g)*if we have to export commonModule from sharedModule then it is not necessary to import commonModule in sharedModule
+
+Video 35: Grouping Routes & Creating a component less route
+    a)*all lazyloaded modules should have same route prefix hence we are creating parent route in employee-routing.module
+    b)*'employees' route in employee-routing.module is component less route as it has no component attached to it.

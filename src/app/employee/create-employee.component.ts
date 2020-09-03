@@ -216,13 +216,13 @@ export class CreateEmployeeComponent implements OnInit {
     //below if condition check if employee already has id to some number then we are updating existing Employee else we have to create one
     if(this.employee.id){
       this.employeeService.updateEmployee(this.employee).subscribe(
-        () => {this.router.navigate(['list'],{skipLocationChange: true});},
+        () => {this.router.navigate(['/employees'],{skipLocationChange: true});},
         (err:any) => console.log(err)
       );
     }
     else{
       this.employeeService.addEmployee(this.employee).subscribe(
-        () => {this.router.navigate(['list']);},
+        () => {this.router.navigate(['/employees']);},
         (err:any) => console.log(err)
       );
     }
