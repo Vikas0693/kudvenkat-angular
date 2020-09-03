@@ -122,3 +122,8 @@ Video 37: Other than Eager and Lazy loading there is preloading strategy
     a)*On initial app start page is loaded eagerly as we know app.module is always eager so while user interacts with eagerly loaded app , lazy loaded modules are downloaded in background after initial startup bundle is downloaded.
     b)Add PreloadAllModules to forRoot of Router in app-routing.module
     c)So no point of preloading if we dont have any lazy loading configurations
+
+Video 38: Custom Preloading
+    a)*when we want some Lazy modules to not do download silently in background in case of preloading strategy
+    b)'use ng g s CustomPreloading' to create a service and inherit from router/PreloadingStrategy
+    c)add data property in route for lazy loading modules and set preload to true. key 'preload' can be anything this property is used in CustomPreloadingService to know which modules to load using preloading strategy
