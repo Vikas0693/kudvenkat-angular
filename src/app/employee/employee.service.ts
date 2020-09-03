@@ -4,9 +4,11 @@ import { Observable, throwError } from 'rxjs';
 import { IEmployee } from './IEmployee';
 import { catchError, tap } from 'rxjs/operators'
 
-@Injectable({
+/* @Injectable({
   providedIn: 'root'
-})
+}) */
+//another way of injecting is in the Root module itself and using @Injectable only
+@Injectable() 
 export class EmployeeService {
 
   baseUrl = "http://localhost:3000/employees"

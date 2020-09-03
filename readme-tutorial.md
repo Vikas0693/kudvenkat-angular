@@ -9,8 +9,7 @@ video 15: Creating custom validators
     e)add custom meesage to custom validator in validationMessages property
     f)*also add those check for which you dont want validation in custom validator. For eg we don't want to check for required validation in email form control as it is handled by default angular validator 'required'
 
-Video 16: Instead of setting static domain in validation function we pass dynamic domain to validation function     
-    using concept called closures
+Video 16: Instead of setting static domain in validation function we pass dynamic domain to validation function  using concept called closures
     a)what is closure? Its a func. that returns another function.
     b)so inside a emailDomain function we are accepting valid domains and use it to check in inner anonymous function
 
@@ -28,6 +27,7 @@ Video 19: Understanding FormArray
     b)*If any of the elements of formArray has validation error like required,minLength etc.. then whole formArray will have the validation error
     c)*Usefull methods of FormArray - push(formCntrol/formGroup/formArray object),insert(index),removeAt(index),setControl(index):replaces the control at index,at(index):returns control currently at index.
     d)*Diff b/w formArray and formGroup - formArray serializes elments as array and formGroup serializes elements as objects. Try loading data on createEmployee page and look for elements in FormArray and FormGroup
+    f)*we use square brackets in [formGroup] but not in formControlName of formArrayName bcoz formGroup expects object of formGroup whereas formControlName expects string which will be serched in [formGroup]
 
 Video 20: Preparing for adding dynamic input tags
     a)added formArray to skills in employeeForm
@@ -82,3 +82,10 @@ Video 31:Modules in Angular
     e)Routing Module:
     f)Home & pageNotFound component created with ng g c home --flat. Where flat does not create folder
     g)Added Error Handling when list of employee is not showned
+
+Video 32: Refactoring our code
+    a)Organized imports in app.module.ts
+    b)Creating Employee module using 'ng g m employee/employee --flat -m app' where flat tells to not create any folder and -m tells to import our employee module in app module
+    c)Removed ReactiveFormsModule from app.module as no component of module in app.module uses that
+    d)added ReactiveFormsModule to EmployeeModule as we have employee related component in that which used formGroupName and formGroup in component.html
+    e)To export EmployeeComponent or ReactiveFormsModule to be reused by other modules use export:[] in employee.module
