@@ -23,11 +23,12 @@ import { PageNotFoundComponent } from './page-not-found.component';
     PageNotFoundComponent
   ],
   imports: [
+    //order of Routing-Module is important here
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EmployeeModule
+    EmployeeModule,
+    AppRoutingModule,
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]

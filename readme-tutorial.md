@@ -89,3 +89,10 @@ Video 32: Refactoring our code
     c)Removed ReactiveFormsModule from app.module as no component of module in app.module uses that
     d)added ReactiveFormsModule to EmployeeModule as we have employee related component in that which used formGroupName and formGroup in component.html
     e)To export EmployeeComponent or ReactiveFormsModule to be reused by other modules use export:[] in employee.module
+
+Video 33: Creating routing module for feature level module
+    a)Create employee-routing.module.ts manually
+    b)*when creating routing module for feature we use forChild instead of forRoot.Why? because it forRoot returns a new Router service and we know services should be singleton so forChild returns the same instance of Router again.
+    c)*Whenever we need like LoginComponent inside listComponent and we have to use its selector in ListComponent.html then we will do routing in employee-routing.module.ts
+    d)we are not importing emoloyee-routing.module in employee.module.ts because neither create nor list component has child components to be routed to.
+    e)*Order of imporing modules is important in app.module.ts from perspective of routing.module.ts in it.
