@@ -78,7 +78,7 @@ Video 31:Modules in Angular
     a)Feature Module:
     b)Root Module:
     c)Core Module: To create singleton services accross whole app and is imported in Root Module only.
-    d)Shared Module: Forms, Pipes,Directives etc are in Shared Modules.
+    d)Shared Module: Common Components,Pipes,Directives etc are in Shared Modules.
     e)Routing Module:
     f)Home & pageNotFound component created with ng g c home --flat. Where flat does not create folder
     g)Added Error Handling when list of employee is not showned
@@ -96,3 +96,11 @@ Video 33: Creating routing module for feature level module
     c)*Whenever we need like LoginComponent inside listComponent and we have to use its selector in ListComponent.html then we will do routing in employee-routing.module.ts
     d)we are not importing emoloyee-routing.module in employee.module.ts because neither create nor list component has child components to be routed to.
     e)*Order of imporing modules is important in app.module.ts from perspective of routing.module.ts in it.
+
+Video 34: Creating shared modules
+    a)Shared modules may re-export other common angular modules(Common,Forms Modules)
+    b)Should not have providers
+    c)Should not import or re-export modules that have providers
+    d)Can be imported in all modules where we need shared modules
+    e)ng g m shared/shared --flat -m employee/employee command is used to create shared module
+    f)Moved Common/ReactiveFormsModule from employee.module to shared.module
