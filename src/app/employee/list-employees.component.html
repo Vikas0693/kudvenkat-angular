@@ -14,7 +14,7 @@
             <tr *ngFor="let employee of employees">
                 <td>{{ employee.fullName }}</td>
                 <td>{{ employee.email }}</td>
-                <td>{{ employee.phone }}</td>
+                <td>{{ employee.phone | noPhone}}</td>
                 <td>{{ employee.contactPreference }}</td>
                 <td><a class="btn btn-primary" routerLink="/employees/edit/{{employee.id}}">Edit</a></td>
             </tr>

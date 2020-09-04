@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { EmployeeTitlePipe } from '../shared/employeeTitle.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    EmployeeTitlePipe
+  ],
   imports: [
-
   ],
   exports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EmployeeTitlePipe
   ]
 })
 export class SharedModule { }

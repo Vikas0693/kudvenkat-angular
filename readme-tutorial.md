@@ -127,3 +127,17 @@ Video 38: Custom Preloading
     a)*when we want some Lazy modules to not do download silently in background in case of preloading strategy
     b)'use ng g s CustomPreloading' to create a service and inherit from router/PreloadingStrategy
     c)add data property in route for lazy loading modules and set preload to true. key 'preload' can be anything this property is used in CustomPreloadingService to know which modules to load using preloading strategy
+
+Angular 2 of Kudvenkat yoututbe tutorial
+
+Video 19: Custom Pipes
+    a)showing ---- instead of empty phone no.
+    b)created custom pipe in Shared Module
+
+Video 21: Input Properties - to load values in nested component from container component using @Input(); decorator
+
+Video 22: Output Properties - to pass values(user actions/selections) from child component to parent component. Also how to create customEvent which will emit an event to parent component
+
+Video 23: Interfaces
+    a)Angular does not uses interfaces, developer uses it for strict typechecking to resolve runtime errors at compile time errors as
+    b)to write less code, a class that implements interface should include all members of interface in its constructor only with access specifier.
